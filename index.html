@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Glider Browser</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toolbar">
+  <button id="btn-new">＋</button>
+  <div id="tabs"></div>
+  <input id="address" type="text" placeholder="Enter URL"/>
+  <button id="go">Go</button>
+</div>
+
+<script>
+let tabs = [];
+let activeTabId = null;
+
+const tabsDiv = document.getElementById('tabs');
+const addressInput = document.getElementById('address');
+const goBtn = document.getElementById('go');
+const newBtn = document.getElementById('btn-new');
+
+function renderTabs(){
+  tabsDiv.innerHTML = '';
+  for(const t of tabs){
+    const el = document.createElement('div');
+    el.className = 'tab' + (t.id===activeTabId?' active':'');
+    el.textContent = t.title || 'New Tab';
+    el.onclick = ()=> activateTab(t.id);
+    tabsDiv.appendChild(el);
+  }
+}
+
+async function createTab(url='https://github.com'){
+  const id = await window.api.newTab(url);
+  tabs.push({id, title: url});
+  activateTab(id);
+}
+
+async function activateTab(id){
+  activeTabId = id;
+  const tab = tabs.find(t=>t.id===id);
+  addressInput.value = tab.title;
+  renderTabs();
+  await window.api.switchTab(id);
+}
+
+async function navigate(url){
+  if(!/^https?:\/\//.test(url)) url = 'https://' + url;
+  const tab = tabs.find(t=>t.id===activeTabId);
+  tab.title = url;
+  await window.api.navigate(activeTabId, url);
+  renderTabs();
+}
+
+goBtn.onclick = ()=> navigate(addressInput.value);
+addressInput.addEventListener('keydown', e=>{ if(e.key==='Enter') navigate(addressInput.value); });
+newBtn.onclick = ()=> createTab();
+
+// Start with one tab
+createTab();
+</script>
+</body>
+</html>
+

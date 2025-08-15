@@ -1,0 +1,12 @@
+{
+  "name": "glider",
+  "version": "1.0.0",
+  "description": "Glider Desktop Browser",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^26.2.0"
+  }
+}
