@@ -1,13 +1,16 @@
 body { margin:0; font-family:'Segoe UI', sans-serif; background:#0d0d0d; color:white; }
+
 #toolbar {
   height:60px;
   background:#1c1c1c;
   display:flex;
   align-items:center;
   padding:0 10px;
-  box-shadow: 0 0 10px #ff1a1a;
+  box-shadow: 0 0 10px #00ff88; /* Neon green shadow */
 }
+
 #tabs { display:flex; flex:1; overflow-x:auto; }
+
 .tab {
   padding:6px 14px;
   margin-right:5px;
@@ -16,8 +19,38 @@ body { margin:0; font-family:'Segoe UI', sans-serif; background:#0d0d0d; color:w
   border-radius:10px 10px 0 0;
   transition:0.2s;
 }
-.tab:hover { background:#ff1a1a; }
-.tab.active { background:#ff1a1a; font-weight:bold; color:white; box-shadow:0 0 10px #ff1a1a; }
-#address { flex:2; margin:0 8px; padding:6px 10px; border-radius:6px; border:none; outline:none; background:#333; color:white; }
-button { margin-left:5px; padding:6px 12px; border:none; border-radius:6px; background:#222; color:white; cursor:pointer; transition:0.2s; }
-button:hover { background:#ff1a1a; color:white; }
+
+.tab:hover { background:#00aaff; } /* Blue hover */
+.tab.active { 
+  background:#00aaff; /* Active tab blue */
+  font-weight:bold; 
+  color:white; 
+  box-shadow:0 0 10px #00ff88; /* Neon green glow */
+}
+
+#address { 
+  flex:2; 
+  margin:0 8px; 
+  padding:6px 10px; 
+  border-radius:6px; 
+  border:none; 
+  outline:none; 
+  background:#333; 
+  color:white; 
+}
+
+button { 
+  margin-left:5px; 
+  padding:6px 12px; 
+  border:none; 
+  border-radius:6px; 
+  background:#222; 
+  color:white; 
+  cursor:pointer; 
+  transition:0.2s; 
+}
+
+button:hover { 
+  background:#00aaff; /* Blue hover */
+  color:white; 
+}
